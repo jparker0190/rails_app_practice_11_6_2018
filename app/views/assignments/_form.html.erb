@@ -1,4 +1,4 @@
-<%= form_with(model: assignment, local: true) do |form| %>
+<%= form_for ([@portfolio, @assignment]) do |form| %>
   <% if assignment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
@@ -12,13 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :stock_id %>
-    <%= form.number_field :stock_id %>
+     <%=form.label "Pick which portfolio"%>
+     <%= form.select(:portfolio_id) do %>
+     <%= options_from_collection_for_select(Portfolio.all, :id, :name, :selected => @assignment.portfolio_id) %>
+     <%end%>
+
   </div>
 
   <div class="field">
-    <%= form.label :portfolio_id %>
-    <%= form.number_field :portfolio_id %>
+    <%= form.label "Assign a stock" %>
+    <%= form.select(:stock_id) do%>
+    <%= options_from_collection_for_select(Stock.all, :id, :ticker, :selected => @assignment.stock_id) %>
+     <%end%>
   </div>
 
   <div class="actions">

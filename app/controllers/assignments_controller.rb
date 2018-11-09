@@ -5,6 +5,11 @@ class AssignmentsController < ApplicationController
   # GET /assignments.json
   def index
     @assignments = Assignment.all
+    if params[:portfolio_id]
+     @assignment = Assignment.new(portfolio_id: params[:portfolio_id])
+    else
+     @assignment = Assignment.new
+    end
   end
 
   # GET /assignments/1
@@ -14,7 +19,7 @@ class AssignmentsController < ApplicationController
 
   # GET /assignments/new
   def new
-    @assignment = Assignment.new
+    @assignment = Assignment.new(portfolio_id: params[:portfolio_id])
   end
 
   # GET /assignments/1/edit
