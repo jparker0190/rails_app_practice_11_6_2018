@@ -4,8 +4,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios
   # GET /portfolios.json
   def index
-    @portfolios = Portfolio.all
-    @assignments = 
+    @portfolios = Portfolio.includes(:stocks).all
  
   end
 

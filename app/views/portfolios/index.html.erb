@@ -15,6 +15,10 @@
       <tr>
         <td><%= portfolio.id %></td>
         <td><%= portfolio.name %></td>
+        <%portfolio.stocks.each do |st|%>
+        <%=st.ticker%>
+        <%=st.price%>
+        <%end%>
         <td><%= link_to 'Show', portfolio %></td>
         <td><%= link_to 'Assign Stock', new_assignment_path(portfolio) %></td>
         <td><%= link_to 'Show Stocks', stock_path(portfolio) %></td>
@@ -25,9 +29,6 @@
  
   </tbody>
 </table>
-<% @portfolio.assignments.each do |a|%>
-  <p><%= a.stock.ticker %></p>
-  <%end%>
 <br>
 
 <%= link_to 'New Portfolio', new_portfolio_path %>
